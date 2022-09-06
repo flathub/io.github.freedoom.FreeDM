@@ -8,59 +8,60 @@ command: gzdoom.sh
 rename-icon: freedm
 
 finish-args:
-- --device=dri
-- --socket=wayland
-- --socket=fallback-x11
-- --share=ipc
-- --share=network
-- --socket=pulseaudio
+  - --device=dri
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --share=network
+  - --socket=pulseaudio
 
-# GZDoom requirements
-- --env=DOOMWADDIR=/app/share/games/doom
-- --persist=.config/gzdoom
+  # GZDoom requirements
+  - --env=DOOMWADDIR=/app/share/games/doom
+  - --persist=.config/gzdoom
 
-# Simpler way of preventing KDE related errors
-- --env=KDE_FULL_SESSION=false
+  # Simpler way of preventing KDE related errors
+  - --env=KDE_FULL_SESSION=false
 
 modules:
 
-- shared-modules/linux-audio/libinstpatch.json
-- shared-modules/linux-audio/fluidsynth2.json
-- shared-modules/gzdoom/gzdoom.json
+  - shared-modules/linux-audio/libinstpatch.json
+  - shared-modules/linux-audio/fluidsynth2.json
+  - shared-modules/gzdoom/gzdoom.json
 
-- name: freedm
-  buildsystem: simple
-  sources:
-  - type: archive
-    url: https://github.com/freedoom/freedoom/releases/download/v0.12.1/freedm-0.12.1.zip
-    sha256: e1318704f8440b6b83dcb523b769f02a4de214336713cffed830514c6f294514
-    x-checker-data:
-      type: anitya
-      project-id: 843
-      url-template: https://github.com/freedoom/freedoom/releases/download/v$version/freedm-$version.zip
-  - type: file
-    url: https://raw.githubusercontent.com/freedoom/freedoom/v0.12.1/dist/io.github.freedoom.FreeDM.desktop
-    sha256: 3f54a0eb2f49909e03ff87b961a1ea247e0eec22b0a9f220febb93196163d707
-    # Temporary version until the mebp issue is resolved
-  - type: file
-    path: io.github.freedoom.FreeDM.metainfo.xml
-  - type: file
-    path: freedm_title2-48x48.png
-  - type: file
-    path: freedm_title2-64x64.png
-  - type: file
-    path: freedm_title2-128x128.png
-  - type: script
-    commands:
-    - gzdoom +fluid_patchset /app/share/sounds/sf2/gzdoom.sf2 -file lights.pk3 brightmaps.pk3 "$@"
-    dest-filename: gzdoom.sh
-  build-commands:
-  - install -D gzdoom.sh /app/bin/gzdoom.sh
-  - install -Dm 644 freedm.wad /app/share/games/doom
-  - desktop-file-edit --set-key=Exec --set-value=gzdoom.sh io.github.freedoom.FreeDM.desktop
-  - install -Dm 644 io.github.freedoom.FreeDM.desktop -t /app/share/applications
-  - install -Dm 644 io.github.freedoom.FreeDM.metainfo.xml -t /app/share/appdata
-  - install -Dm 644 freedm_title2-48x48.png /app/share/icons/hicolor/48x48/apps/freedm.png
-  - install -Dm 644 freedm_title2-64x64.png /app/share/icons/hicolor/64x64/apps/freedm.png
-  - install -Dm 644 freedm_title2-128x128.png /app/share/icons/hicolor/128x128/apps/freedm.png
-  - install -D gzdoom.sh /app/bin/gzdoom.sh
+  - name: freedm
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/freedoom/freedoom/releases/download/v0.12.1/freedm-0.12.1.zip
+        sha256: e1318704f8440b6b83dcb523b769f02a4de214336713cffed830514c6f294514
+        x-checker-data:
+          type: anitya
+          project-id: 843
+          url-template: https://github.com/freedoom/freedoom/releases/download/v$version/freedm-$version.zip
+      - type: file
+        url: https://raw.githubusercontent.com/freedoom/freedoom/v0.12.1/dist/io.github.freedoom.FreeDM.desktop
+        sha256: 3f54a0eb2f49909e03ff87b961a1ea247e0eec22b0a9f220febb93196163d707
+        # Temporary version until the mebp issue is resolved
+      - type: file
+        path: io.github.freedoom.FreeDM.metainfo.xml
+      - type: file
+        path: freedm_title2-48x48.png
+      - type: file
+        path: freedm_title2-64x64.png
+      - type: file
+        path: freedm_title2-128x128.png
+      - type: script
+        commands:
+          - gzdoom +fluid_patchset /app/share/sounds/sf2/gzdoom.sf2 -file lights.pk3 brightmaps.pk3 "$@"
+        dest-filename: gzdoom.sh
+    build-commands:
+      - install -D gzdoom.sh /app/bin/gzdoom.sh
+      - install -Dm 644 freedm.wad /app/share/games/doom
+      - desktop-file-edit --set-key=Exec --set-value=gzdoom.sh io.github.freedoom.FreeDM.desktop
+      - install -Dm 644 io.github.freedoom.FreeDM.desktop -t /app/share/applications
+      - install -Dm 644 io.github.freedoom.FreeDM.metainfo.xml -t /app/share/appdata
+      - install -Dm 644 freedm_title2-48x48.png /app/share/icons/hicolor/48x48/apps/freedm.png
+      - install -Dm 644 freedm_title2-64x64.png /app/share/icons/hicolor/64x64/apps/freedm.png
+      - install -Dm 644 freedm_title2-128x128.png /app/share/icons/hicolor/128x128/apps/freedm.png
+      - install -D gzdoom.sh /app/bin/gzdoom.sh
+
