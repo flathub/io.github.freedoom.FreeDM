@@ -1,7 +1,7 @@
 app-id: io.github.freedoom.FreeDM
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
-runtime-version: "23.08"
+runtime-version: '23.08'
 command: gzdoom.sh
 
 # Desktop file icons are not named according to standard
@@ -30,8 +30,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/freedoom/freedoom/releases/download/v0.12.1/freedm-0.12.1.zip
-        sha256: e1318704f8440b6b83dcb523b769f02a4de214336713cffed830514c6f294514
+        url: https://github.com/freedoom/freedoom/releases/download/v0.13.0/freedm-0.13.0.zip
+        sha256: b420f13508ef745d7b38e83d15e55e0fc0b09d9a503c96741cddd9773d43f7c9
         x-checker-data:
           type: anitya
           project-id: 843
@@ -50,7 +50,8 @@ modules:
         path: freedm_title2-128x128.png
       - type: script
         commands:
-          - gzdoom +fluid_patchset /app/share/sounds/sf2/gzdoom.sf2 -file lights.pk3 brightmaps.pk3 "$@"
+          - gzdoom +fluid_patchset /app/share/sounds/sf2/gzdoom.sf2 -file lights.pk3
+            brightmaps.pk3 "$@"
         dest-filename: gzdoom.sh
     build-commands:
       - install -D gzdoom.sh /app/bin/gzdoom.sh
