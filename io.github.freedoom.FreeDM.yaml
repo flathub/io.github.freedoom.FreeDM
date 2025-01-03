@@ -40,8 +40,8 @@ modules:
         url: https://raw.githubusercontent.com/freedoom/freedoom/v0.13.0/dist/io.github.freedoom.FreeDM.desktop
         sha256: b5d094604bc88a490d5f3b6102f80ca6c520984600e7a0b7c1664afec4a01126
       - type: file
-        url: https://raw.githubusercontent.com/freedoom/freedoom/v0.13.0/dist/io.github.freedoom.FreeDM.metainfo.xml
-        sha256: 556f387886940e00d3597acc88a5b5de2b82a9d5f489b9fbc453c3596ae83216
+        url: https://raw.githubusercontent.com/freedoom/freedoom/af839d61b179836de037ec619b43bae7e62d105d/dist/io.github.freedoom.FreeDM.metainfo.xml
+        sha256: 347df15aacc4a81b5620a19b50384c44ded67c9df4025f6e71f162b8ae629e65
       - type: file
         path: freedm_title2-48x48.png
       - type: file
