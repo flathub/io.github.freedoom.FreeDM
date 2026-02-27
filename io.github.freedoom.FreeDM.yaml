@@ -48,6 +48,8 @@ modules:
         path: freedm_title2-64x64.png
       - type: file
         path: freedm_title2-128x128.png
+      - type: file
+        path: gzdoom.sh
     build-commands:
       - install -D gzdoom.sh /app/bin/gzdoom.sh
       - install -Dm 644 freedm.wad /app/share/games/doom
